@@ -277,6 +277,10 @@ const STORAGE_DOWNLOAD_BASE_URL = 'https://storage.googleapis.com';
 const STORAGE_UPLOAD_BASE_URL =
   'https://storage.googleapis.com/upload/storage/v1/b';
 
+const STORAGE_UPLOAD_PATH = '/upload/storage/v1/b';
+
+const STORAGE_BASE_URL = 'https://storage.googleapis.com';
+
 /**
  * @const {RegExp}
  * @private
@@ -3199,7 +3203,6 @@ class File extends ServiceObject<File> {
     optionsOrCallback?: SaveOptions | SaveCallback,
     callback?: SaveCallback
   ): Promise<void> | void {
-    console.log("starting save file");
     // tslint:enable:no-any
     callback =
       typeof optionsOrCallback === 'function' ? optionsOrCallback : callback;
@@ -3398,8 +3401,9 @@ class File extends ServiceObject<File> {
       qs: {
         name: this.name,
       },
-      uri: `${STORAGE_UPLOAD_BASE_URL}/${this.bucket.name}/o`,
+      uri: `${this.storage.apiEndpoint || STORAGE_BASE_URL}${STORAGE_UPLOAD_PATH}/${this.bucket.name}/o`,
     };
+
 
     if (this.generation !== undefined) {
       reqOpts.qs.ifGenerationMatch = this.generation;

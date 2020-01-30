@@ -4064,6 +4064,34 @@ describe('File', () => {
       file.startSimpleUpload_(duplexify(), options);
     });
 
+    it('should be upload to storage apiEndpoint', done => {
+      STORAGE.apiEndpoint = 'http://localhost:2000';
+      const options = {
+        metadata: {},
+        predefinedAcl: 'allUsers',
+        private: true,
+        public: true,
+      };
+
+      // tslint:disable-next-line no-any
+      makeWritableStreamOverride = (stream: {}, options_: any) => {
+        assert.strictEqual(options_.metadata, options.metadata);
+        assert.deepStrictEqual(options_.request, {
+          qs: {
+            name: file.name,
+            predefinedAcl: options.predefinedAcl,
+          },
+          uri:
+            'http://localhost:2000/upload/storage/v1/b/' +
+            file.bucket.name +
+            '/o',
+        });
+        done();
+      };
+
+      file.startSimpleUpload_(duplexify(), options);
+    });
+
     it('should set predefinedAcl when public: true', done => {
       // tslint:disable-next-line no-any
       makeWritableStreamOverride = (stream: {}, options_: any) => {
