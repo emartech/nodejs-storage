@@ -3199,6 +3199,7 @@ class File extends ServiceObject<File> {
     optionsOrCallback?: SaveOptions | SaveCallback,
     callback?: SaveCallback
   ): Promise<void> | void {
+    console.log("starting save file");
     // tslint:enable:no-any
     callback =
       typeof optionsOrCallback === 'function' ? optionsOrCallback : callback;
