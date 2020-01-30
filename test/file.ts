@@ -4065,7 +4065,7 @@ describe('File', () => {
     });
 
     it('should be upload to storage apiEndpoint', done => {
-      STORAGE.apiEndpoint = 'http://localhost:2000';
+      STORAGE.apiEndpoint = 'localhost:2000';
       const options = {
         metadata: {},
         predefinedAcl: 'allUsers',
@@ -4082,7 +4082,7 @@ describe('File', () => {
             predefinedAcl: options.predefinedAcl,
           },
           uri:
-            'http://localhost:2000/upload/storage/v1/b/' +
+            'https://localhost:2000/upload/storage/v1/b/' +
             file.bucket.name +
             '/o',
         });

@@ -279,7 +279,7 @@ const STORAGE_UPLOAD_BASE_URL =
 
 const STORAGE_UPLOAD_PATH = '/upload/storage/v1/b';
 
-const STORAGE_BASE_URL = 'https://storage.googleapis.com';
+const STORAGE_BASE_URL = 'storage.googleapis.com';
 
 /**
  * @const {RegExp}
@@ -3396,12 +3396,12 @@ class File extends ServiceObject<File> {
       },
       options
     );
-
+    const baseUrl = this.storage.apiEndpoint || STORAGE_BASE_URL;
     const reqOpts: DecorateRequestOptions = {
       qs: {
         name: this.name,
       },
-      uri: `${this.storage.apiEndpoint || STORAGE_BASE_URL}${STORAGE_UPLOAD_PATH}/${this.bucket.name}/o`,
+      uri: `https://${baseUrl}${STORAGE_UPLOAD_PATH}/${this.bucket.name}/o`,
     };
 
 
