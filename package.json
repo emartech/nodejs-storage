@@ -7,7 +7,7 @@
   "engines": {
     "node": ">=8.10.0"
   },
-  "repository": "googleapis/nodejs-storage",
+  "repository": "emartech/nodejs-storage",
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
   "files": [
