@@ -277,9 +277,9 @@ const STORAGE_DOWNLOAD_BASE_URL = 'https://storage.googleapis.com';
 const STORAGE_UPLOAD_BASE_URL =
   'https://storage.googleapis.com/upload/storage/v1/b';
 
-const STORAGE_UPLOAD_PATH = '/upload/storage/v1/b';
-
 const STORAGE_BASE_URL = 'storage.googleapis.com';
+
+const STORAGE_UPLOAD_PATH = '/upload/storage/v1/b';
 
 /**
  * @const {RegExp}
